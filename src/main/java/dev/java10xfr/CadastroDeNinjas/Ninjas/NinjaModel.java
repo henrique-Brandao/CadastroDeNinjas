@@ -17,17 +17,23 @@ import java.util.List;
 public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "email", nullable = false)
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    @Column(name = "idade", nullable = false)
     private int idade;
 
     //Uma unica missão pra cada ninja
     @ManyToOne
-    @JoinColumn(name = "Missoes_id") // Foreing key ou chave estrangeira
+    @JoinColumn(name = "missoes_id") // Foreing key ou chave estrangeira
     private MissoesModel missoes;
 }
