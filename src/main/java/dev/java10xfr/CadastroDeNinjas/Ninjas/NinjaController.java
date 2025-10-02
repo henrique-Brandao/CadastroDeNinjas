@@ -20,16 +20,16 @@ public class NinjaController {
         return "criar Ninja";
     }
 
-    // Listar todas os Ninjas (READ)
+    // Listar todos os Ninjas (READ)
     @GetMapping("/listar") // GET -- Mandar uma requisição para mostrar os ninjas
     public List<NinjaModel> listarNinjas() {
         return ninjaService.listarNinjas();
     }
 
-    // Listar todas os Ninjas (READ)
-    @GetMapping("/listarid")
-    public String listarNinjasid() {
-        return "listar todas os Ninjas";
+    // Listar todos os Ninjas por id(READ)
+    @GetMapping("/listar/{id}")
+    public NinjaModel listarNinjasId(@PathVariable Long id) {
+        return ninjaService.listarNinjasId(id);
     }
 
     // Atualizar/Editar Ninjas
