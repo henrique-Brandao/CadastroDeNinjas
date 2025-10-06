@@ -34,7 +34,7 @@ public class NinjaController {
 
     // Atualizar/Editar Ninjas
     @PutMapping("/atualizar/{id}") // PUT -- Mandar uma requisição para atualizar os ninjas
-    public NinjaModel atualizarNinja(@PathVariable Long id, NinjaModel ninjaModel) {
+    public NinjaModel atualizarNinja(@PathVariable Long id,@RequestBody NinjaModel ninjaModel) {
         return ninjaService.atualizarNinja(id, ninjaModel);
     }
 
