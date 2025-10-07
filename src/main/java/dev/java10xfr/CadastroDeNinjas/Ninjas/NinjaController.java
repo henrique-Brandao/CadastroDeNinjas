@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ninja")
+@ RequestMapping("/ninja")
 public class NinjaController {
 
     private NinjaService ninjaService;
@@ -16,7 +16,7 @@ public class NinjaController {
 
     // Criar Ninja (CREATE)
     @PostMapping("/criar") // POST -- Mandar uma requisição para Criar os ninjas
-    public NinjaModel criarNinja(@RequestBody NinjaModel ninja) {
+    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninja) {
         return ninjaService.criarNinja(ninja);
     }
 
