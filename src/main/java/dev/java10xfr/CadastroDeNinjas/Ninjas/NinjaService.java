@@ -1,5 +1,6 @@
 package dev.java10xfr.CadastroDeNinjas.Ninjas;
 
+import dev.java10xfr.CadastroDeNinjas.CadastroDeMissoes.MissoesModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,13 +43,15 @@ public class NinjaService {
 
     public NinjaDTO atualizarNinja(Long id, NinjaDTO ninjaDTO) {
 
-        Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);
-        if (ninjaExistente.isPresent()) {
-            NinjaModel ninjaAtualizado = ninjaMapper.map(ninjaDTO);
-            ninjaAtualizado.setId(id);
-            NinjaModel ninjaSalvo = ninjaRepository.save(ninjaAtualizado);
-            return ninjaMapper.map(ninjaSalvo);
-        }
-        return null;
+        NinjaModel ninjaExistente = ninjaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("id do ninja não encontrado"));
+
+        if (ninjaDTO.getEmail() != null) ninjaExistente.setEmail(ninjaDTO.getEmail());
+        if (ninjaDTO.getIdade() == 0) ninjaExistente.setIdade(ninjaDTO.getIdade());
+        if (ninjaDTO.getImgUrl() != null) ninjaExistente.setImgUrl(ninjaDTO.getImgUrl());
+        if (ninjaDTO.getRank() != null) ninjaExistente.setRank(ninjaDTO.getRank());
+
+        NinjaModel ninjaSalvo = ninjaRepository.save(ninjaExistente);
+        return ninjaMapper.map(ninjaSalvo);
     }
 }
