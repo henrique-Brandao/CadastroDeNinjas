@@ -5,15 +5,16 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.util.List;
 
-// Entity transforma uma classe em uma entidade no dataBase
+
 @Entity
 @Table(name = "tb_cadastro")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(exclude = "missoes")
 public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
